@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import Show
 from datetime import datetime
 
@@ -14,14 +15,21 @@ def new_show(request):
     if request.method == "GET":
         return render(request, 'tv_shows/new_show.html')
     elif request.method == "POST":
-        data = request.POST
-        title = data['title']
-        network = data['network']
-        release_date = data['release_date']
-        description = data['description']
-        show = Show.objects.create(title=title, network=network, release_date=release_date, description=description)
-        show.save()
-        return redirect('/')
+        errors = Show.objects.validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect(f'shows/new')
+        else:
+            data = request.POST
+            show = Show.objects.get(id=id)
+            show.title = data['title']
+            show.network = data['network']
+            show.release_date = data['release_date']
+            show.description = data['description']
+            show = Show.objects.create(title=title, network=network, release_date=release_date, description=description)
+            show.save()
+            return redirect(f'shows/{id}')
 
 def show(request, id):
     if request.method == "GET":
@@ -43,14 +51,20 @@ def edit(request, id):
         }
         return render(request, 'tv_shows/edit.html', context)
     if request.method == "POST":
-        data = request.POST
-        show = Show.objects.get(id=id)
-        show.title = data['title']
-        show.network = data['network']
-        show.release_date = data['release_date']
-        show.description = data['description']
-        show.save()
-        return redirect(f'shows/{id}')
+        errors = Show.objects.validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect(f'shows/{id}/edit')
+        else:
+            data = request.POST
+            show = Show.objects.get(id=id)
+            show.title = data['title']
+            show.network = data['network']
+            show.release_date = data['release_date']
+            show.description = data['description']
+            show.save()
+            return redirect(f'shows/{id}')
 
 def delete(request, id):
     if request.method == "GET":

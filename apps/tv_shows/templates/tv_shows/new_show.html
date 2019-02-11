@@ -11,13 +11,23 @@
     
     <div class="container">
 
-        <div class="row">
+        {% if messages %}
+            <div class="row">
+                <div class="col-12">
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="{{ message.tags }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endif %}
 
+        <div class="row">
             <div class="col-12">
                 <h1>Add A New Show</h1>
                 <a href="http://localhost:8000/shows" class="btn btn-primary">Go Back</a>
             </div>
-
         </div>
 
         <div class="row">
