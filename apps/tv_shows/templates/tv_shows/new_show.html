@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New Show</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+    
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-12">
+                <h1>Add A New Show</h1>
+                <a href="http://localhost:8000/shows" class="btn btn-primary">Go Back</a>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-10">
+
+                <form action="/shows/create" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" id="title" class="form-control">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label for="network">Network</label>
+                            <input type="text" name="network" id="network" class="form-control">
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="release_date">Release Date</label>
+                            <input type="date" name="release_date" id="release_date" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Create</button>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

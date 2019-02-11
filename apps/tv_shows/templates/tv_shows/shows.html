@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>All Shows</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+    
+    <div class="container">
+
+        <div class="row mt-5">
+            <div class="col-12">
+
+                <h1>All Shows</h1>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-12">
+
+                <table class="table">
+
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Network</th>
+                            <th scope="col">Release Date</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for show in shows %}
+                            <tr>
+                                <th scope="row">{{ show.id }}</th>
+                                <td>{{ show.title }}</td>
+                                <td>{{ show.network }}</td>
+                                <td>{{ show.release_date }}</td>
+                                <td>
+                                    <a href="http://localhost:8000/shows/{{ show.id }}" class="btn btn-primary">Show</a>
+                                    <a href="http://localhost:8000/shows/{{ show.id }}/edit" class="btn btn-warning">Edit</a>
+                                    <a href="http://localhost:8000/shows/{{ show.id }}/destroy" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <a href="http://localhost:8000/shows/new" class="btn btn-primary" role="button">Add A New Show</a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

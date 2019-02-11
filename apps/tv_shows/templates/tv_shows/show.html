@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Show</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-12">
+
+                <h1>TV Show {{ show.id }}</h1>
+
+                <a href="http://localhost:8000/" class="btn btn-primary">Go Back</a>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-10">
+
+                <p>Title: {{ show.title }}</p>
+                <p>Network: {{ show.network }}</p>
+                <p>Release Date: {{ show.release_date|date:"SHORT_DATE_FORMAT" }}</p>
+                <p>Description: {{ show.description }}</p>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-12">
+
+                <p>Last Updated: {{ show.updated_at }}</p>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-5">
+                <a href="http://localhost:8000/shows/{{ show.id }}/edit" class="btn btn-warning">Edit</a>
+                <a href="http://localhost:8000/shows/{{ show.id }}/destroy" class="btn btn-danger">Delete</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
